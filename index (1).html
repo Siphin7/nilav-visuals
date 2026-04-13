@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nilav Visuals — Cinematic Photography & Videography, Kerala</title>
+  <meta name="description" content="Premium cinematic photography & videography in Kerala. Emotional storytelling for weddings, pre-weddings, portraits, cars & more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       RESET & ROOT
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:       #080808;
+      --deep:        #0d0d0d;
+      --surface:     #111111;
+      --surface2:    #161616;
+      --border:      rgba(255,255,255,0.07);
+      --gold:        #c9a96e;
+      --gold-light:  #e8cfa0;
+      --gold-dim:    rgba(201,169,110,0.15);
+      --white:       #f5f0e8;
+      --muted:       rgba(245,240,232,0.45);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Jost', sans-serif;
+      --transition:  0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      cursor: none;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--gold-dim); color: var(--gold-light); }
+
+    /* ============================================================
+       CUSTOM CURSOR
+    ============================================================ */
+    .cursor-dot {
+      position: fixed; top: 0; left: 0;
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s;
+    }
+    .cursor-ring {
+      position: fixed; top: 0; left: 0;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(201,169,110,0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.18s ease, width 0.3s, height 0.3s, border-color 0.3s;
+    }
+    body:has(a:hover) .cursor-ring,
+    body:has(button:hover) .cursor-ring {
+      width: 56px; height: 56px;
+      border-color: var(--gold);
+    }
+
+    /* ============================================================
+       SCROLLBAR
+    ============================================================ */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 28px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: padding 0.4s, background 0.4s;
+    }
+    nav.scrolled {
+      padding: 18px 60px;
+      background: rgba(8,8,8,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: var(--white);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links {
+      display: flex; gap: 42px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.7rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      font-size: 0.68rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      border: 1px solid rgba(201,169,110,0.4);
+      padding: 10px 24px; text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--black); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: none; }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 1px; background: var(--white);
+      transition: 0.3s;
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      height: 100vh; min-height: 700px;
+      position: relative; display: flex;
+      align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(201,169,110,0.06) 0%, transparent 70%),
+        linear-gradient(to bottom, rgba(8,8,8,0) 0%, rgba(8,8,8,0.3) 50%, rgba(8,8,8,0.95) 100%),
+        var(--black);
+    }
+    /* Cinematic film grain overlay */
+    .hero-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      animation: orb-float 12s ease-in-out infinite;
+    }
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      animation-delay: 0s;
+    }
+    .orb-2 {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(201,169,110,0.05) 0%, transparent 70%);
+      bottom: 0; left: -80px;
+      animation-delay: -5s;
+    }
+    @keyframes orb-float {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; padding: 0 24px;
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      font-size: 0.65rem; letter-spacing: 0.4em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 32px;
+      opacity: 0; transform: translateY(20px);
+      animation: fade-up 1s 0.3s forwards;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 8vw, 7.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 28px;
+      opacity: 0; transform: translateY(30px);
+      animation: fade-up 1.1s 0.5s forwards;
+    }
+    .hero-title em {
+      font-style: italic; color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 0.82rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 56px;
+      opacity: 0; transform: translateY(20px);
+      animation: fade-up 1s 0.8s forwards;
+    }
+    .hero-actions {
+      display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+      opacity: 0; transform: translateY(20px);
+      animation: fade-up 1s 1s forwards;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.68rem; letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 16px 38px; text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-block;
+      border: 1px solid rgba(245,240,232,0.2);
+      color: var(--white);
+      font-size: 0.68rem; letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 16px 38px; text-decoration: none;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute; bottom: 42px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      opacity: 0; animation: fade-up 1s 1.4s forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.58rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scroll-pulse 2s ease-in-out infinite;
+    }
+    @keyframes scroll-pulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    @keyframes fade-up {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       SECTION COMMONS
+    ============================================================ */
+    section { position: relative; }
+    .section-label {
+      font-size: 0.6rem; letter-spacing: 0.45em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .section-label::before {
+      content: ''; display: block;
+      width: 40px; height: 1px; background: var(--gold);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--white);
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94),
+                  transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+    .reveal-delay-4 { transition-delay: 0.6s; }
+
+    /* ============================================================
+       MARQUEE REEL STRIP
+    ============================================================ */
+    .reel-strip {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+      background: var(--surface);
+    }
+    .reel-track {
+      display: flex; gap: 60px; white-space: nowrap;
+      animation: marquee 25s linear infinite;
+    }
+    .reel-track span {
+      font-size: 0.62rem; letter-spacing: 0.35em;
+      text-transform: uppercase; color: var(--muted);
+      flex-shrink: 0;
+    }
+    .reel-track span.dot { color: var(--gold); font-size: 0.5rem; }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ============================================================
+       PHILOSOPHY / INTRO
+    ============================================================ */
+    #philosophy {
+      padding: 140px 60px;
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 100px; align-items: center;
+    }
+    .philosophy-visual {
+      position: relative;
+    }
+    .philosophy-frame {
+      width: 100%; aspect-ratio: 3/4;
+      background: var(--surface2);
+      position: relative; overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .philosophy-frame::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(135deg, rgba(201,169,110,0.06) 0%, transparent 60%),
+        linear-gradient(to bottom, transparent 60%, rgba(8,8,8,0.5) 100%);
+    }
+    /* Simulated cinematic image with gradient */
+    .philosophy-frame-inner {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201,169,110,0.12) 0%, transparent 60%),
+        linear-gradient(160deg, #1a1610 0%, #0d0d0d 50%, #080808 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .frame-icon {
+      font-size: 3rem; opacity: 0.15;
+      font-family: var(--font-display);
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+    .philosophy-badge {
+      position: absolute;
+      bottom: -24px; right: -24px;
+      width: 110px; height: 110px;
+      background: var(--gold);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .philosophy-badge .num {
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 500;
+      color: var(--black); line-height: 1;
+    }
+    .philosophy-badge .lbl {
+      font-size: 0.55rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(8,8,8,0.7);
+    }
+    .philosophy-text { }
+    .philosophy-body {
+      font-size: 1.05rem; line-height: 1.9;
+      color: var(--muted); margin-top: 32px;
+    }
+    .philosophy-body strong { color: var(--white); font-weight: 400; }
+    .philosophy-stats {
+      display: flex; gap: 48px; margin-top: 52px;
+      padding-top: 40px; border-top: 1px solid var(--border);
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.4rem; color: var(--gold);
+      font-weight: 300; line-height: 1;
+    }
+    .stat-lbl {
+      font-size: 0.62rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ============================================================
+       PORTFOLIO
+    ============================================================ */
+    #portfolio {
+      padding: 120px 60px;
+      background: var(--deep);
+    }
+    .portfolio-header {
+      max-width: 1200px; margin: 0 auto 64px;
+      display: flex; justify-content: space-between; align-items: flex-end;
+    }
+    .portfolio-filters {
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .filter-btn {
+      font-size: 0.62rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 8px 18px; background: none;
+      cursor: none; transition: all 0.3s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      border-color: var(--gold); color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .portfolio-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 16px;
+    }
+    .portfolio-item {
+      background: var(--surface2);
+      overflow: hidden; position: relative;
+      cursor: none;
+    }
+    .portfolio-item:nth-child(1) { grid-column: span 7; grid-row: span 2; }
+    .portfolio-item:nth-child(2) { grid-column: span 5; }
+    .portfolio-item:nth-child(3) { grid-column: span 5; }
+    .portfolio-item:nth-child(4) { grid-column: span 4; }
+    .portfolio-item:nth-child(5) { grid-column: span 4; }
+    .portfolio-item:nth-child(6) { grid-column: span 4; }
+
+    .portfolio-thumb {
+      width: 100%;
+      aspect-ratio: 4/3;
+      transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .portfolio-item:nth-child(1) .portfolio-thumb { aspect-ratio: 3/4; }
+    .portfolio-item:hover .portfolio-thumb { transform: scale(1.06); }
+
+    /* Simulated image placeholders */
+    .portfolio-thumb {
+      position: relative; overflow: hidden;
+    }
+    .portfolio-thumb-inner {
+      position: absolute; inset: 0;
+      transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .portfolio-item:hover .portfolio-thumb-inner { transform: scale(1.06); }
+
+    .p-img-1 { background: linear-gradient(135deg, #1a1208 0%, #2a1f10 40%, #0d0d0d 100%); }
+    .p-img-2 { background: linear-gradient(135deg, #0d1218 0%, #111a22 40%, #0a0d10 100%); }
+    .p-img-3 { background: linear-gradient(135deg, #120d0a 0%, #1e1410 40%, #0d0d0d 100%); }
+    .p-img-4 { background: linear-gradient(135deg, #0d1010 0%, #121818 40%, #080808 100%); }
+    .p-img-5 { background: linear-gradient(135deg, #150d08 0%, #201410 40%, #0d0d0d 100%); }
+    .p-img-6 { background: linear-gradient(135deg, #0a0d12 0%, #12141e 40%, #080808 100%); }
+
+    .portfolio-thumb-inner::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(201,169,110,0.09) 0%, transparent 65%);
+    }
+
+    .portfolio-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,0.85) 0%, transparent 50%);
+      opacity: 0; transition: opacity 0.5s;
+      display: flex; align-items: flex-end; padding: 28px;
+    }
+    .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+    .portfolio-overlay-text {}
+    .portfolio-cat {
+      font-size: 0.58rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .portfolio-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem; color: var(--white);
+    }
+
+    /* Category tags on items */
+    .portfolio-tag {
+      position: absolute; top: 20px; left: 20px;
+      font-size: 0.55rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--white);
+      background: rgba(8,8,8,0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+    }
+
+    /* ============================================================
+       ABOUT
+    ============================================================ */
+    #about {
+      padding: 160px 60px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .about-inner {
+      display: grid; grid-template-columns: 1fr 1.3fr;
+      gap: 100px; align-items: start;
+    }
+    .about-portrait {
+      position: sticky; top: 140px;
+    }
+    .about-portrait-frame {
+      aspect-ratio: 2/3;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .about-portrait-frame-inner {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 70% at 40% 35%, rgba(201,169,110,0.1) 0%, transparent 60%),
+        linear-gradient(150deg, #1a1510 0%, #0d0d0d 60%, #080808 100%);
+    }
+    .about-portrait-line {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 28px;
+      background: linear-gradient(to top, rgba(8,8,8,0.95) 0%, transparent 100%);
+    }
+    .about-portrait-name {
+      font-family: var(--font-display);
+      font-size: 1.5rem; color: var(--white);
+    }
+    .about-portrait-role {
+      font-size: 0.6rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--gold);
+      margin-top: 4px;
+    }
+
+    .about-content {}
+    .about-lead {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 300; line-height: 1.4;
+      color: var(--white); margin-top: 32px;
+    }
+    .about-lead em { font-style: italic; color: var(--gold); }
+    .about-body {
+      font-size: 0.9rem; line-height: 1.95;
+      color: var(--muted); margin-top: 36px;
+    }
+    .about-body p + p { margin-top: 20px; }
+    .about-body strong { color: var(--white); font-weight: 400; }
+    .about-values {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; margin-top: 56px;
+      border: 1px solid var(--border);
+    }
+    .value-item {
+      padding: 28px 24px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .value-item:hover { background: var(--gold-dim); }
+    .value-num {
+      font-family: var(--font-display);
+      font-size: 2rem; color: var(--gold);
+      opacity: 0.4; line-height: 1;
+    }
+    .value-title {
+      font-size: 0.75rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--white);
+      margin-top: 10px;
+    }
+    .value-desc {
+      font-size: 0.78rem; color: var(--muted);
+      margin-top: 8px; line-height: 1.7;
+    }
+
+    /* ============================================================
+       PACKAGES
+    ============================================================ */
+    #packages {
+      padding: 140px 60px;
+      background: var(--deep);
+      position: relative; overflow: hidden;
+    }
+    #packages::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 1px; height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--border), transparent);
+    }
+    .packages-header {
+      text-align: center; max-width: 700px;
+      margin: 0 auto 80px;
+    }
+    .packages-subtext {
+      font-size: 0.82rem; color: var(--muted);
+      margin-top: 20px; line-height: 1.8;
+    }
+    .packages-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .package-card {
+      background: var(--surface);
+      padding: 48px 40px;
+      position: relative; overflow: hidden;
+      transition: background 0.4s;
+      cursor: none;
+    }
+    .package-card:hover { background: var(--surface2); }
+    .package-card.featured {
+      background: linear-gradient(160deg, #1a1510 0%, var(--surface) 100%);
+      border: 1px solid rgba(201,169,110,0.25);
+      grid-column: span 1;
+    }
+    .package-card.featured::before {
+      content: 'SIGNATURE';
+      position: absolute; top: 24px; right: -30px;
+      font-size: 0.5rem; letter-spacing: 0.3em;
+      text-transform: uppercase;
+      background: var(--gold); color: var(--black);
+      padding: 5px 40px;
+      transform: rotate(45deg);
+      transform-origin: center;
+    }
+    .package-icon {
+      font-size: 1.6rem; margin-bottom: 24px;
+      display: block;
+    }
+    .package-name {
+      font-family: var(--font-display);
+      font-size: 1.6rem; font-weight: 400;
+      color: var(--white); line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .package-tagline {
+      font-size: 0.7rem; font-style: italic;
+      color: var(--gold); margin-bottom: 32px;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+    }
+    .package-divider {
+      width: 40px; height: 1px;
+      background: var(--gold);
+      margin-bottom: 28px; opacity: 0.5;
+    }
+    .package-features {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 13px;
+    }
+    .package-features li {
+      font-size: 0.8rem; color: var(--muted);
+      display: flex; align-items: flex-start; gap: 12px;
+      line-height: 1.5;
+    }
+    .package-features li::before {
+      content: '';
+      width: 16px; height: 1px;
+      background: var(--gold); flex-shrink: 0;
+      margin-top: 10px; opacity: 0.6;
+    }
+    .package-cta-row {
+      margin-top: 40px; padding-top: 28px;
+      border-top: 1px solid var(--border);
+      display: flex; gap: 12px; flex-wrap: wrap;
+    }
+    .pkg-btn {
+      font-size: 0.62rem; letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 11px 22px; text-decoration: none;
+      transition: all 0.3s; cursor: none;
+      display: inline-block;
+    }
+    .pkg-btn-primary {
+      background: var(--gold); color: var(--black); font-weight: 500;
+    }
+    .pkg-btn-primary:hover { background: var(--gold-light); }
+    .pkg-btn-ghost {
+      border: 1px solid var(--border); color: var(--muted);
+    }
+    .pkg-btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* Wide card for last package */
+    .packages-grid-row2 {
+      max-width: 1200px; margin: 1px auto 0;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-top: none;
+    }
+
+    .packages-note {
+      text-align: center; margin-top: 56px;
+      font-size: 0.72rem; color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .packages-note span { color: var(--gold); }
+
+    /* ============================================================
+       CTA BAND
+    ============================================================ */
+    #cta-band {
+      padding: 160px 60px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    #cta-band::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,169,110,0.07) 0%, transparent 70%);
+    }
+    .cta-band-super {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 8rem);
+      font-weight: 300; line-height: 1;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      position: relative; z-index: 1;
+    }
+    .cta-band-super em { font-style: italic; color: var(--gold); }
+    .cta-band-text {
+      font-size: 0.82rem; color: var(--muted);
+      margin: 32px auto; max-width: 500px;
+      line-height: 1.8; position: relative; z-index: 1;
+    }
+    .cta-band-actions {
+      display: flex; gap: 20px; justify-content: center;
+      flex-wrap: wrap; position: relative; z-index: 1;
+    }
+    /* WhatsApp button */
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25D366; color: #fff;
+      font-size: 0.68rem; letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 16px 32px; text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .btn-whatsapp:hover { background: #1ebe57; transform: translateY(-2px); }
+    .btn-whatsapp svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* ============================================================
+       TESTIMONIALS
+    ============================================================ */
+    #testimonials {
+      padding: 120px 60px;
+      background: var(--surface);
+    }
+    .testimonials-header {
+      max-width: 1200px; margin: 0 auto 72px;
+    }
+    .testimonials-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      border: 1px solid var(--border);
+      padding: 40px 36px;
+      position: relative; background: var(--surface2);
+      transition: border-color 0.3s;
+    }
+    .testimonial-card:hover { border-color: rgba(201,169,110,0.3); }
+    .testimonial-quote {
+      font-family: var(--font-display);
+      font-size: 3.5rem; line-height: 0.8;
+      color: var(--gold); opacity: 0.3;
+      margin-bottom: 16px;
+    }
+    .testimonial-text {
+      font-family: var(--font-display);
+      font-size: 1.05rem; line-height: 1.7;
+      color: var(--white); font-style: italic;
+    }
+    .testimonial-author {
+      margin-top: 28px; padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .testimonial-name {
+      font-size: 0.7rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--white);
+    }
+    .testimonial-role {
+      font-size: 0.62rem; color: var(--muted);
+      margin-top: 4px; letter-spacing: 0.1em;
+    }
+    .testimonial-stars {
+      color: var(--gold); font-size: 0.7rem;
+      margin-bottom: 16px; letter-spacing: 3px;
+    }
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    #contact {
+      padding: 140px 60px;
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 100px;
+    }
+    .contact-left {}
+    .contact-body {
+      font-size: 0.88rem; line-height: 1.9;
+      color: var(--muted); margin-top: 28px;
+    }
+    .contact-links {
+      margin-top: 52px;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .contact-link-item {
+      display: flex; align-items: center; gap: 20px;
+      text-decoration: none;
+      padding: 20px 24px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .contact-link-item:hover {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .contact-link-icon {
+      width: 40px; height: 40px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold); font-size: 1rem;
+    }
+    .contact-link-info {}
+    .contact-link-label {
+      font-size: 0.58rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .contact-link-value {
+      font-size: 0.85rem; color: var(--white);
+      margin-top: 3px;
+    }
+    .contact-right {}
+    .contact-form {
+      display: flex; flex-direction: column; gap: 16px;
+      margin-top: 0;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-label {
+      font-size: 0.6rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .form-input, .form-select, .form-textarea {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 14px 18px;
+      font-family: var(--font-body);
+      font-size: 0.85rem; font-weight: 300;
+      outline: none;
+      transition: border-color 0.3s;
+      width: 100%;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(245,240,232,0.25); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: rgba(201,169,110,0.5);
+    }
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c9a96e' stroke-width='1'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      cursor: none;
+    }
+    .form-select option { background: var(--surface2); }
+    .form-textarea { resize: none; height: 120px; line-height: 1.6; }
+    .form-submit {
+      background: var(--gold); color: var(--black);
+      border: none;
+      font-family: var(--font-body);
+      font-size: 0.68rem; letter-spacing: 0.22em;
+      text-transform: uppercase; font-weight: 500;
+      padding: 16px 32px;
+      cursor: none;
+      transition: background 0.3s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: var(--gold-light); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 60px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 24px;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--white);
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-links {
+      display: flex; gap: 36px; list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.62rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.62rem; color: rgba(245,240,232,0.25);
+      letter-spacing: 0.1em;
+    }
+
+    /* ============================================================
+       MOBILE NAV
+    ============================================================ */
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 99;
+      background: rgba(8,8,8,0.97);
+      backdrop-filter: blur(24px);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 36px;
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 2rem; color: var(--white);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-close {
+      position: absolute; top: 28px; right: 28px;
+      background: none; border: none;
+      color: var(--muted); font-size: 1.2rem;
+      cursor: none;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      #philosophy { grid-template-columns: 1fr; gap: 60px; padding: 100px 40px; }
+      .about-inner { grid-template-columns: 1fr; }
+      .about-portrait { position: static; }
+      #contact { grid-template-columns: 1fr; gap: 60px; padding: 100px 40px; }
+      .packages-grid { grid-template-columns: repeat(2, 1fr); }
+      .packages-grid-row2 { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 22px 28px; }
+      nav.scrolled { padding: 16px 28px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      #hero, #philosophy, #portfolio, #about,
+      #packages, #cta-band, #testimonials, #contact {
+        padding-left: 24px; padding-right: 24px;
+      }
+      .packages-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .portfolio-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .portfolio-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+      .portfolio-item:nth-child(2) { grid-column: span 1; }
+      .portfolio-item:nth-child(3) { grid-column: span 1; }
+      .portfolio-item:nth-child(4) { grid-column: span 1; }
+      .portfolio-item:nth-child(5) { grid-column: span 1; }
+      .portfolio-item:nth-child(6) { grid-column: span 2; }
+      .portfolio-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .about-values { grid-template-columns: 1fr; }
+      .philosophy-badge { width: 90px; height: 90px; }
+      footer { flex-direction: column; text-align: center; padding: 48px 24px; }
+      .footer-links { justify-content: center; flex-wrap: wrap; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       MISC UTIL
+    ============================================================ */
+    .text-gold { color: var(--gold); }
+    .mt-auto { margin-top: auto; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+    }
+
+    /* Page load transition */
+    .page-loader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.8s 0.3s, visibility 0.8s 0.3s;
+    }
+    .page-loader.done { opacity: 0; visibility: hidden; }
+    .loader-text {
+      font-family: var(--font-display);
+      font-size: 1.8rem; letter-spacing: 0.3em;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+    .loader-text span {
+      display: inline-block;
+      animation: loader-in 0.8s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+      opacity: 0; transform: translateY(100%);
+    }
+    .loader-text span:nth-child(1)  { animation-delay: 0.10s; }
+    .loader-text span:nth-child(2)  { animation-delay: 0.18s; }
+    .loader-text span:nth-child(3)  { animation-delay: 0.26s; }
+    .loader-text span:nth-child(4)  { animation-delay: 0.34s; }
+    .loader-text span:nth-child(5)  { animation-delay: 0.42s; }
+    .loader-text span:nth-child(6)  { animation-delay: 0.50s; }
+    .loader-text span:nth-child(7)  { animation-delay: 0.56s; }
+    .loader-text span:nth-child(8)  { animation-delay: 0.62s; }
+    .loader-text span:nth-child(9)  { animation-delay: 0.68s; }
+    .loader-text span:nth-child(10) { animation-delay: 0.74s; }
+    .loader-text span:nth-child(11) { animation-delay: 0.80s; }
+    .loader-text span:nth-child(12) { animation-delay: 0.86s; }
+    .loader-text span:nth-child(13) { animation-delay: 0.92s; }
+    @keyframes loader-in {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .loader-bar {
+      position: absolute; bottom: 0; left: 0;
+      height: 2px; background: var(--gold);
+      animation: loader-progress 1.9s ease-in-out forwards;
+    }
+    @keyframes loader-progress {
+      0% { width: 0; }
+      100% { width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-text">
+      <span>N</span><span>I</span><span>L</span><span>A</span><span>V</span>
+      <span style="color:var(--gold)">&nbsp;</span>
+      <span style="color:var(--gold)">V</span><span style="color:var(--gold)">I</span><span style="color:var(--gold)">S</span><span style="color:var(--gold)">U</span><span style="color:var(--gold)">A</span><span style="color:var(--gold)">L</span><span style="color:var(--gold)">S</span>
+    </div>
+    <div class="loader-bar"></div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+    <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#packages" onclick="closeMobile()">Packages</a>
+    <a href="#testimonials" onclick="closeMobile()">Stories</a>
+    <a href="#contact" onclick="closeMobile()" style="color:var(--gold)">Book Now</a>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="mainNav">
+    <a href="#" class="nav-logo">Nilav <span>Visuals</span></a>
+    <ul class="nav-links">
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#testimonials">Stories</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Book Now</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════════════
+       HERO
+  ═══════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Kerala's Cinematic Visual Studio</p>
+      <h1 class="hero-title">
+        Every Frame<br/>
+        Tells Your<br/>
+        <em>Story.</em>
+      </h1>
+      <p class="hero-sub">Photography &nbsp;·&nbsp; Videography &nbsp;·&nbsp; Cinematic Storytelling</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Book Your Shoot</a>
+        <a href="#portfolio" class="btn-ghost">View Work</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Marquee Strip -->
+  <div class="reel-strip">
+    <div class="reel-track" id="reelTrack">
+      <span>Cinematic Storytelling</span>
+      <span class="dot">◆</span>
+      <span>Pre-Wedding Films</span>
+      <span class="dot">◆</span>
+      <span>Portrait Sessions</span>
+      <span class="dot">◆</span>
+      <span>Car Photography</span>
+      <span class="dot">◆</span>
+      <span>Birthday Coverage</span>
+      <span class="dot">◆</span>
+      <span>Kerala · India</span>
+      <span class="dot">◆</span>
+      <span>Cinematic Storytelling</span>
+      <span class="dot">◆</span>
+      <span>Pre-Wedding Films</span>
+      <span class="dot">◆</span>
+      <span>Portrait Sessions</span>
+      <span class="dot">◆</span>
+      <span>Car Photography</span>
+      <span class="dot">◆</span>
+      <span>Birthday Coverage</span>
+      <span class="dot">◆</span>
+      <span>Kerala · India</span>
+      <span class="dot">◆</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       PHILOSOPHY / INTRO
+  ═══════════════════════════════════ -->
+  <section id="philosophy">
+    <div class="philosophy-visual reveal">
+      <div class="philosophy-frame">
+        <div class="philosophy-frame-inner">
+          <div class="frame-icon">NV</div>
+        </div>
+      </div>
+      <div class="philosophy-badge">
+        <div class="num">5+</div>
+        <div class="lbl">Years of Cinema</div>
+      </div>
+    </div>
+    <div class="philosophy-text">
+      <p class="section-label reveal">Our Philosophy</p>
+      <h2 class="section-title reveal reveal-delay-1">
+        We don't just<br/>
+        take photos.<br/>
+        <em>We preserve feelings.</em>
+      </h2>
+      <p class="philosophy-body reveal reveal-delay-2">
+        At Nilav Visuals, we believe every moment carries a weight that <strong>deserves more than a snapshot</strong>. 
+        We craft each frame with the intention of a filmmaker — finding the light, the emotion, 
+        the split second that turns ordinary into <strong>extraordinary</strong>.<br/><br/>
+        Based in Kerala, we've had the privilege of telling stories that range 
+        from the golden coastlines of Alleppey to the mist-laden hills of Munnar — 
+        always with <strong>one goal: to make you feel it all over again</strong>.
+      </p>
+      <div class="philosophy-stats reveal reveal-delay-3">
+        <div class="stat-item">
+          <div class="stat-num">200+</div>
+          <div class="stat-lbl">Stories Told</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-lbl">Client Satisfaction</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4K</div>
+          <div class="stat-lbl">Cinematic Quality</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       PORTFOLIO
+  ═══════════════════════════════════ -->
+  <section id="portfolio">
+    <div class="portfolio-header">
+      <div>
+        <p class="section-label reveal">Selected Work</p>
+        <h2 class="section-title reveal reveal-delay-1">The Portfolio</h2>
+      </div>
+      <div class="portfolio-filters reveal reveal-delay-2">
+        <button class="filter-btn active" onclick="filterPortfolio('all', this)">All</button>
+        <button class="filter-btn" onclick="filterPortfolio('couples', this)">Couples</button>
+        <button class="filter-btn" onclick="filterPortfolio('cars', this)">Cars</button>
+        <button class="filter-btn" onclick="filterPortfolio('portraits', this)">Portraits</button>
+        <button class="filter-btn" onclick="filterPortfolio('events', this)">Events</button>
+      </div>
+    </div>
+    <div class="portfolio-grid" id="portfolioGrid">
+      <div class="portfolio-item reveal" data-cat="couples">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-inner p-img-1"></div>
+        </div>
+        <div class="portfolio-tag">Couples</div>
+        <div class="portfolio-overlay">
+          <div class="portfolio-overlay-text">
+            <div class="portfolio-cat">Pre-Wedding</div>
+            <div class="portfolio-name">Before the Vows</div>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-item reveal reveal-delay-1" data-cat="portraits">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-inner p-img-2"></div>
+        </div>
+        <div class="portfolio-tag">Portrait</div>
+        <div class="portfolio-overlay">
+          <div class="portfolio-overlay-text">
+            <div class="portfolio-cat">Insta Shoot</div>
+            <div class="portfolio-name">Golden Hour</div>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-item reveal reveal-delay-2" data-cat="events">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-inner p-img-3"></div>
+        </div>
+        <div class="portfolio-tag">Events</div>
+        <div class="portfolio-overlay">
+          <div class="portfolio-overlay-text">
+            <div class="portfolio-cat">Birthday</div>
+            <div class="portfolio-name">The Celebration</div>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-item reveal reveal-delay-1" data-cat="cars">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-inner p-img-4"></div>
+        </div>
+        <div class="portfolio-tag">Cars</div>
+        <div class="portfolio-overlay">
+          <div class="portfolio-overlay-text">
+            <div class="portfolio-cat">Automotive</div>
+            <div class="portfolio-name">The Statement</div>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-item reveal reveal-delay-2" data-cat="couples">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-inner p-img-5"></div>
+        </div>
+        <div class="portfolio-tag">Couples</div>
+        <div class="portfolio-overlay">
+          <div class="portfolio-overlay-text">
+            <div class="portfolio-cat">Pre-Wedding</div>
+            <div class="portfolio-name">Alleppey Dusk</div>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-item reveal reveal-delay-3" data-cat="portraits">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-inner p-img-6"></div>
+        </div>
+        <div class="portfolio-tag">Portrait</div>
+        <div class="portfolio-overlay">
+          <div class="portfolio-overlay-text">
+            <div class="portfolio-cat">Cinematic</div>
+            <div class="portfolio-name">Unscripted</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════ -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-portrait reveal">
+        <div class="about-portrait-frame">
+          <div class="about-portrait-frame-inner"></div>
+          <div class="about-portrait-line">
+            <div class="about-portrait-name">Nilav</div>
+            <div class="about-portrait-role">Founder · Visual Director</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content">
+        <p class="section-label reveal">The Artist</p>
+        <h2 class="section-title reveal reveal-delay-1">Behind the<br/><em>Lens</em></h2>
+        <p class="about-lead reveal reveal-delay-2">
+          I don't arrive at a shoot with a shot list.<br/>
+          I arrive with <em>intention</em>.
+        </p>
+        <div class="about-body reveal reveal-delay-3">
+          <p>
+            Growing up in Kerala, I was surrounded by a world that was <strong>effortlessly cinematic</strong> — 
+            monsoons that painted everything gold, temple festivals ablaze with light, 
+            and quiet backwater mornings that felt like they belonged in a film.
+          </p>
+          <p>
+            That upbringing became the lens through which I see everything. 
+            <strong>Nilav Visuals isn't a studio — it's a perspective.</strong> A way of 
+            looking at people, places, and moments that finds the extraordinary 
+            inside the ordinary.
+          </p>
+          <p>
+            Whether I'm shooting a couple before their wedding, 
+            a machine that someone loves like family, or a person who just wants 
+            the world to see who they really are — <strong>my job is to make that truth visible</strong>.
+          </p>
+        </div>
+        <div class="about-values reveal reveal-delay-4">
+          <div class="value-item">
+            <div class="value-num">01</div>
+            <div class="value-title">Emotion First</div>
+            <div class="value-desc">Every creative decision serves the feeling, not the formula.</div>
+          </div>
+          <div class="value-item">
+            <div class="value-num">02</div>
+            <div class="value-title">Story-Led Direction</div>
+            <div class="value-desc">We build a narrative before we build a shot list.</div>
+          </div>
+          <div class="value-item">
+            <div class="value-num">03</div>
+            <div class="value-title">Cinematic Grade</div>
+            <div class="value-desc">Color, light, and composition at a film-level standard.</div>
+          </div>
+          <div class="value-item">
+            <div class="value-num">04</div>
+            <div class="value-title">You at Ease</div>
+            <div class="value-desc">The best photos come from people who forget the camera exists.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       PACKAGES
+  ═══════════════════════════════════ -->
+  <section id="packages">
+    <div class="packages-header reveal">
+      <p class="section-label" style="justify-content:center">What We Offer</p>
+      <h2 class="section-title" style="text-align:center">Crafted Experiences,<br/><em>Not Just Packages</em></h2>
+      <p class="packages-subtext">
+        Every session is built around your story. Choose what fits — 
+        or tell us what you're imagining and we'll make it happen.
+      </p>
+    </div>
+
+    <div class="packages-grid reveal">
+      <!-- Insta Package -->
+      <div class="package-card">
+        <span class="package-icon">📸</span>
+        <div class="package-name">Insta<br/>Package</div>
+        <div class="package-tagline">"Make your Instagram feel like a movie."</div>
+        <div class="package-divider"></div>
+        <ul class="package-features">
+          <li>1 Hour Shoot</li>
+          <li>15–25 Premium Edited Photos</li>
+          <li>Cinematic Color Grading</li>
+          <li>Pose Guidance Included</li>
+          <li>1 Short Reel Edit</li>
+        </ul>
+        <div class="package-cta-row">
+          <a href="https://wa.me/919999999999?text=Hi%2C%20I'm%20interested%20in%20the%20Insta%20Package" 
+             target="_blank" class="pkg-btn pkg-btn-primary">WhatsApp Now</a>
+          <a href="#contact" class="pkg-btn pkg-btn-ghost">Enquire</a>
+        </div>
+      </div>
+
+      <!-- Pre-Wedding Package -->
+      <div class="package-card">
+        <span class="package-icon">💍</span>
+        <div class="package-name">Pre-Wedding<br/>Package</div>
+        <div class="package-tagline">"Before the wedding… comes your story."</div>
+        <div class="package-divider"></div>
+        <ul class="package-features">
+          <li>2–3 Hour Shoot</li>
+          <li>40–60 Premium Edited Photos</li>
+          <li>1 Cinematic Highlight Video</li>
+          <li>Story-Based Direction</li>
+          <li>Location & Outfit Guidance</li>
+        </ul>
+        <div class="package-cta-row">
+          <a href="https://wa.me/919999999999?text=Hi%2C%20I'm%20interested%20in%20the%20Pre-Wedding%20Package" 
+             target="_blank" class="pkg-btn pkg-btn-primary">WhatsApp Now</a>
+          <a href="#contact" class="pkg-btn pkg-btn-ghost">Enquire</a>
+        </div>
+      </div>
+
+      <!-- Cinematic Experience – FEATURED -->
+      <div class="package-card featured">
+        <span class="package-icon">🎥</span>
+        <div class="package-name">Cinematic<br/>Experience</div>
+        <div class="package-tagline">"This isn't a shoot… it's cinema."</div>
+        <div class="package-divider"></div>
+        <ul class="package-features">
+          <li>Half-Day Shoot Session</li>
+          <li>60+ Premium Edited Photos</li>
+          <li>2 Full Cinematic Videos</li>
+          <li>Creative Direction + Concept Planning</li>
+          <li>Multiple Locations & Outfits</li>
+        </ul>
+        <div class="package-cta-row">
+          <a href="https://wa.me/919999999999?text=Hi%2C%20I'm%20interested%20in%20the%20Cinematic%20Experience" 
+             target="_blank" class="pkg-btn pkg-btn-primary">WhatsApp Now</a>
+          <a href="#contact" class="pkg-btn pkg-btn-ghost">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="packages-grid-row2 reveal reveal-delay-2">
+      <!-- Birthday Package -->
+      <div class="package-card">
+        <span class="package-icon">🎉</span>
+        <div class="package-name">Birthday &<br/>Moments</div>
+        <div class="package-tagline">"Because moments like this deserve to be remembered."</div>
+        <div class="package-divider"></div>
+        <ul class="package-features">
+          <li>1–2 Hour Coverage</li>
+          <li>30+ Premium Edited Photos</li>
+          <li>Candid + Posed Mix</li>
+          <li>1 Cinematic Highlight Reel</li>
+          <li>Emotion-Focused Editing Style</li>
+        </ul>
+        <div class="package-cta-row">
+          <a href="https://wa.me/919999999999?text=Hi%2C%20I'm%20interested%20in%20the%20Birthday%20Package" 
+             target="_blank" class="pkg-btn pkg-btn-primary">WhatsApp Now</a>
+          <a href="#contact" class="pkg-btn pkg-btn-ghost">Enquire</a>
+        </div>
+      </div>
+
+      <!-- Car Package -->
+      <div class="package-card">
+        <span class="package-icon">🚗</span>
+        <div class="package-name">Car Shoot<br/>Package</div>
+        <div class="package-tagline">"Not just a car. A statement."</div>
+        <div class="package-divider"></div>
+        <ul class="package-features">
+          <li>1–2 Hour Shoot</li>
+          <li>20–40 Premium Edited Photos</li>
+          <li>Cinematic Color Grading</li>
+          <li>Rolling Shots (Where Possible)</li>
+          <li>1 Reel / Cinematic Edit</li>
+        </ul>
+        <div class="package-cta-row">
+          <a href="https://wa.me/919999999999?text=Hi%2C%20I'm%20interested%20in%20the%20Car%20Shoot%20Package" 
+             target="_blank" class="pkg-btn pkg-btn-primary">WhatsApp Now</a>
+          <a href="#contact" class="pkg-btn pkg-btn-ghost">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="packages-note reveal">
+      <span>Pricing is tailored to your vision.</span> — Get in touch for a custom quote designed around your story.
+    </p>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       CTA BAND
+  ═══════════════════════════════════ -->
+  <section id="cta-band">
+    <p class="cta-band-super reveal">
+      Your story<br/>
+      deserves to<br/>
+      <em>live forever.</em>
+    </p>
+    <p class="cta-band-text reveal reveal-delay-1">
+      Don't let your most important moments fade. 
+      Let us turn them into something you'll watch with tears in your eyes, 
+      ten years from now.
+    </p>
+    <div class="cta-band-actions reveal reveal-delay-2">
+      <a href="https://wa.me/919999999999?text=Hi%20Nilav%20Visuals%2C%20I'd%20like%20to%20book%20a%20shoot"
+         target="_blank" class="btn-whatsapp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Book on WhatsApp
+      </a>
+      <a href="#contact" class="btn-ghost">Send an Enquiry</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       TESTIMONIALS
+  ═══════════════════════════════════ -->
+  <section id="testimonials">
+    <div class="testimonials-header">
+      <p class="section-label reveal">What They Say</p>
+      <h2 class="section-title reveal reveal-delay-1">Stories From<br/><em>Our Clients</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">
+          We didn't expect to cry watching our pre-wedding film. But here we are, 
+          watching it for the eighth time. Nilav understood us before we understood ourselves.
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-name">Arjun & Meera</div>
+          <div class="testimonial-role">Pre-Wedding · Alleppey</div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">
+          My car shoot was absolutely cinematic. Every photo looks like it belongs 
+          in a magazine. Not just a photographer — a visual artist.
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-name">Rohan K.</div>
+          <div class="testimonial-role">Car Shoot · Kochi</div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">
+          My Instagram literally transformed after the shoot. People keep asking 
+          who shot my photos. It doesn't just look good — it feels like me.
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-name">Ananya R.</div>
+          <div class="testimonial-role">Insta Package · Thrissur</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       CONTACT
+  ═══════════════════════════════════ -->
+  <section id="contact">
+    <div class="contact-left">
+      <p class="section-label reveal">Get In Touch</p>
+      <h2 class="section-title reveal reveal-delay-1">Let's Make<br/><em>Something Real</em></h2>
+      <p class="contact-body reveal reveal-delay-2">
+        Whether you have a clear vision or just a feeling you can't put into words — 
+        reach out. That's where every great story starts.
+      </p>
+      <div class="contact-links reveal reveal-delay-3">
+        <a href="https://wa.me/919999999999" target="_blank" class="contact-link-item">
+          <div class="contact-link-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">WhatsApp</div>
+            <div class="contact-link-value">Chat with us directly</div>
+          </div>
+        </a>
+        <a href="mailto:hello@nilavvisuals.com" class="contact-link-item">
+          <div class="contact-link-icon">✉</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">hello@nilavvisuals.com</div>
+          </div>
+        </a>
+        <a href="https://instagram.com/nilavvisuals" target="_blank" class="contact-link-item">
+          <div class="contact-link-icon">◈</div>
+          <div class="contact-link-info">
+            <div class="contact-link-label">Instagram</div>
+            <div class="contact-link-value">@nilavvisuals</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-right reveal reveal-delay-1">
+      <p class="section-label">Quick Enquiry</p>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="Enter your name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone / WhatsApp</label>
+            <input type="tel" class="form-input" placeholder="+91 XXXXX XXXXX" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Shoot Type</label>
+          <select class="form-select">
+            <option value="" disabled selected>Select a package</option>
+            <option>Insta Package</option>
+            <option>Pre-Wedding Package</option>
+            <option>Birthday & Moments Package</option>
+            <option>Car Shoot Package</option>
+            <option>Cinematic Experience</option>
+            <option>Something Custom</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Date</label>
+          <input type="date" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tell Us Your Vision</label>
+          <textarea class="form-textarea" placeholder="What do you want to feel when you look at these photos?"></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Send Enquiry →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════ -->
+  <footer>
+    <a href="#" class="footer-logo">Nilav <span>Visuals</span></a>
+    <ul class="footer-links">
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Nilav Visuals · Kerala, India</p>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // Page Loader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('pageLoader').classList.add('done');
+      }, 2100);
+    });
+
+    // Custom Cursor
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px';
+      dot.style.top = my + 'px';
+    });
+
+    function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    // Navigation scroll effect
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu
+    const hamburger = document.getElementById('navHamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    function closeMobile() { mobileMenu.classList.remove('open'); }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Portfolio filter
+    function filterPortfolio(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.portfolio-item').forEach(item => {
+        const show = cat === 'all' || item.dataset.cat === cat;
+        item.style.opacity = show ? '1' : '0.25';
+        item.style.transform = show ? '' : 'scale(0.98)';
+        item.style.transition = 'opacity 0.4s, transform 0.4s';
+      });
+    }
+
+    // Form submit
+    function submitForm() {
+      const name = document.querySelector('.form-input').value;
+      const message = `Hi Nilav Visuals! My name is ${name || 'a client'}. I filled out your enquiry form and would like to book a shoot.`;
+      window.open(`https://wa.me/919999999999?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    // Parallax on hero orbs
+    window.addEventListener('scroll', () => {
+      const sy = window.scrollY;
+      const orbs = document.querySelectorAll('.orb');
+      orbs.forEach((o, i) => {
+        o.style.transform = `translateY(${sy * (i === 0 ? 0.15 : -0.1)}px)`;
+      });
+    });
+
+    // Duplicate reel strip for seamless loop
+    const track = document.getElementById('reelTrack');
+    track.innerHTML += track.innerHTML;
+  </script>
+</body>
+</html>
